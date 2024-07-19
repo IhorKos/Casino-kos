@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react'
-import RouletteTable from './ui/RouletteTable/RouletteTable'
-import BetPanel from './ui/BetPanel/BetPanel'
-import InfoPanel from './ui/InfoPanel/InfoPanel'
-import EventPanel from './ui/EventPanel/EventPanel'
+import RouletteTable from '../../ui/RouletteTable/RouletteTable'
+import BetPanel from '../../ui/BetPanel/BetPanel'
+import InfoPanel from '../../ui/InfoPanel/InfoPanel'
+import EventPanel from '../../ui/EventPanel/EventPanel'
 
 interface IGameSceneUIProps {
   children: ReactNode

@@ -1,10 +1,11 @@
 import { FC } from 'react'
-import { useAppSelector } from '../../../../../../app/store/hooks'
+import { useAppSelector } from '../../../../app/store/hooks'
 import {
   selectActiveNumber,
   selectCurrentBet,
-} from '../../../../slices/rouletteSlice'
-import { selectBalance } from '../../../../../../entities/wallet/slices/walletSlice';
+} from '../../slices/rouletteSlice'
+import { selectBalance } from '../../../../entities/wallet/slices/walletSlice';
+import { selectRouletteSpinCurrentNumber } from '../../slices/rouletteSpinSlice';
 
 interface IInfoPanelProps {}
 
@@ -41,6 +42,8 @@ const InfoPanel: FC<IInfoPanelProps> = () => {
     const balance = useAppSelector(selectBalance)
   const activeNumber = useAppSelector(selectActiveNumber)
   const currentBet = useAppSelector(selectCurrentBet)
+  const winBet = useAppSelector(selectRouletteSpinCurrentNumber)
+
   return (
     <div className="flex justify-between px-10">
       {ITEMS.map((item) => (
@@ -50,6 +53,7 @@ const InfoPanel: FC<IInfoPanelProps> = () => {
             {item.id === 'activeNumber' && activeNumber}
             {item.id === 'currentBet' && currentBet}
             {item.id === 'balance' && balance}
+            {item.id === 'winBet' && winBet}
           </div>
         </div>
       ))}

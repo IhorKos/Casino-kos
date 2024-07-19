@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IWallet } from "../model/Wallet";
-import { TRootState } from "../../../app/store";
+import { RootState } from "../../../app/store";
 
 
 const initialState:IWallet = {
-    game_balance: 0
+    game_balance: 5000
 }
 
 const walletSlice = createSlice({
@@ -21,6 +21,6 @@ export const {
     setBalance
 } = walletSlice.actions
 
-export const selectBalance = (state: TRootState) => state.wallet.game_balance
+export const selectBalance = (state: RootState) => state.wallet.game_balance
 
 export default walletSlice.reducer

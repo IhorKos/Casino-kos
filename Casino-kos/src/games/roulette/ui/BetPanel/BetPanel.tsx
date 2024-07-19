@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
-import { useAppDispatch } from '../../../../../../app/store/hooks'
-import { setCurrentBet } from '../../../../slices/rouletteSlice'
-import bet50 from '../../../../../../assets/roulette/bet-50.png'
-import bet100 from '../../../../../../assets/roulette/bet-100.png'
-import bet200 from '../../../../../../assets/roulette/bet-200.png'
-import bet400 from '../../../../../../assets/roulette/bet-400.png'
-import bet800 from '../../../../../../assets/roulette/bet-800.png'
+import { FC } from 'react'
+import { useAppDispatch } from '../../../../app/store/hooks'
+import { setCurrentBet } from '../../slices/rouletteSlice'
+import bet50 from '../../../../assets/roulette/bet-50.png'
+import bet100 from '../../../../assets/roulette/bet-100.png'
+import bet200 from '../../../../assets/roulette/bet-200.png'
+import bet400 from '../../../../assets/roulette/bet-400.png'
+import bet800 from '../../../../assets/roulette/bet-800.png'
 
 interface IBetPanelProps {}
 const BETS = [
