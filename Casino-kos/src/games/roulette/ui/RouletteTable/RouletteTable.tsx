@@ -3,6 +3,8 @@ import { ROULETTE_TABLE_NUMBERS } from './initData'
 import { twMerge } from 'tailwind-merge'
 import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
 import { selectActiveNumber, setActiveNumber } from '../../slices/rouletteSlice'
+import { sound } from '@pixi/sound'
+import { SOUNDS_ROULETTE } from '../../scenes/GameScene/config'
 
 interface IRouletteTableProps {}
 
@@ -10,6 +12,7 @@ const RouletteTable: FC<IRouletteTableProps> = () => {
   const activeNumber = useAppSelector(selectActiveNumber)
   const dispatch = useAppDispatch()
   const handleClick = (number: number) => {
+    sound.play(SOUNDS_ROULETTE.NUMBER)
     dispatch(setActiveNumber(number))
   }
   return (

@@ -11,14 +11,14 @@ interface IGameSceneUIProps {
 const GameSceneUI: FC<IGameSceneUIProps> = ({ children }) => {
   return (
     <div className="relative">
-      <div className="absolute right-[5%] top-[40%] text-white">
+      <div className="absolute left-[45%] bottom-[29%] text-white">
         <RouletteTable />
       </div>
-      <div className="absolute bottom-[15%] right-[30%]">
+      <div className="absolute left-[45%] bottom-[10%] text-white">
         <BetPanel />
       </div>
       
-      <div className="absolute top-[30%] left-[70%] text-white">
+      <div className="absolute top-[25%] left-[62%] text-white">
         <EventPanel/>
       </div>
       <div className="absolute top-[5%] right-0 left-0 text-white">

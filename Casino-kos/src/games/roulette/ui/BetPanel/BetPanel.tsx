@@ -6,6 +6,9 @@ import bet100 from '../../../../assets/roulette/bet-100.png'
 import bet200 from '../../../../assets/roulette/bet-200.png'
 import bet400 from '../../../../assets/roulette/bet-400.png'
 import bet800 from '../../../../assets/roulette/bet-800.png'
+import styles from './betsPanel.module.css'
+import { sound } from '@pixi/sound'
+import { SOUNDS_ROULETTE } from '../../scenes/GameScene/config'
 
 interface IBetPanelProps {}
 const BETS = [
@@ -35,24 +38,27 @@ const BetPanel: FC<IBetPanelProps> = () => {
   const dispatch = useAppDispatch()
 
   const pickBet = (value: number) => {
+    sound.play(SOUNDS_ROULETTE.BET)
     dispatch(setCurrentBet(value))
   }
 
   return (
-    <div className="flex gap-4 item-center">
-      {BETS.map(({ value, image }) => (
-        <div
-          onClick={() => pickBet(value)}
-          onContextMenu={(e) => {
-            e.preventDefault()
-            pickBet(-value)
-          }}
-          key={value}
-          className="cursor-pointer hover:scale-[1.05] transition-all"
-        >
-          <img src={image} />
-        </div>
-      ))}
+    <div className={styles.wrapper}>
+      <div className="flex gap-4 item-center">
+        {BETS.map(({ value, image }) => (
+          <div
+            onClick={() => pickBet(value)}
+            onContextMenu={(e) => {
+              e.preventDefault()
+              pickBet(-value)
+            }}
+            key={value}
+            className="cursor-pointer hover:scale-[1.05] transition-all"
+          >
+            <img src={image} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

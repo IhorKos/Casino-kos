@@ -11,6 +11,9 @@ import {
   selectRouletteWinOrLose,
   setRouletteLifecycle,
 } from '../../slices/rouletteSlice'
+import RouletteStartButton from '../../shared/button/RouletteStartButton'
+import { sound } from '@pixi/sound'
+import { SOUNDS_ROULETTE } from '../../scenes/GameScene/config'
 
 interface IEventPanelProps {}
 
@@ -20,13 +23,14 @@ const EventPanel: FC<IEventPanelProps> = () => {
   const currentNumber = useAppSelector(selectRouletteSpinCurrentNumber)
   const dispatch = useAppDispatch()
   const onStart = () => {
+    sound.play(SOUNDS_ROULETTE.SPIN)
     dispatch(setRouletteStartSpeed())
     dispatch(setRouletteLifecycle(RouletteLifecycle.PLAY))
   }
   return (
     <div>
       {lifecycle === RouletteLifecycle.READY_TO_START && (
-        <button onClick={onStart}>START</button>
+        <RouletteStartButton onClick={onStart}/>
       )}
       {lifecycle === RouletteLifecycle.PLAY && (
         <div>

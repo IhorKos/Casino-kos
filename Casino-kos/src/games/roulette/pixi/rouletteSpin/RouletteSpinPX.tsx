@@ -5,6 +5,7 @@ import mediumCircle from '../../../../assets/roulette/medium-circle.png'
 import internalCircle from '../../../../assets/roulette/internal-circle.png'
 import arrow from '../../../../assets/roulette/arrow.png'
 import wheel from '../../../../assets/roulette/wheel.png'
+import bgRoulette from '../../../../assets/roulette/bg-roulette.png'
 import { useAppDispatch, useAppSelector } from '../../../../app/store/hooks'
 import {
   selectRouletteSpinRotationInProgress,
@@ -14,17 +15,19 @@ import {
 } from '../../slices/rouletteSpinSlice'
 import { radianToDegrees } from '../../../../shared/lib/degrees/radianToDegrees'
 import { RouletteLifecycle, setRouletteLifecycle } from '../../slices/rouletteSlice'
+import { sound } from '@pixi/sound'
+import { SOUNDS_ROULETTE } from '../../scenes/GameScene/config'
 
 interface IRouletteSpinPXProps {}
 
 const POSITION_SPIN = {
-  x: 200,
-  y: 300,
+  x: 264,
+  y: 286,
 }
 
 const POSITION_ARROW = {
-  x: 200,
-  y: 170,
+  x: 264,
+  y: 160,
   rotation: -0.45,
 }
 
@@ -47,6 +50,7 @@ const RouletteSpinPX: FC<IRouletteSpinPXProps> = () => {
           radianToDegrees(rotationMedium % (Math.PI * 2))
         ))
         dispatch(setRouletteLifecycle(RouletteLifecycle.FINISHED))
+        sound.stop(SOUNDS_ROULETTE.SPIN)
       } else {
         dispatch(setRouletteSpinSpeed(null))
       }
@@ -54,6 +58,12 @@ const RouletteSpinPX: FC<IRouletteSpinPXProps> = () => {
   })
   return (
     <Container>
+      <Sprite
+        image={bgRoulette}
+        x={425}
+        y={500}
+        anchor={1}
+      />
       <Sprite
         image={externalCircle}
         x={POSITION_SPIN.x}

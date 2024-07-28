@@ -4,18 +4,19 @@ import {
   selectActiveNumber,
   selectCurrentBet,
 } from '../../slices/rouletteSlice'
-import { selectBalance } from '../../../../entities/wallet/slices/walletSlice';
-import { selectRouletteSpinCurrentNumber } from '../../slices/rouletteSpinSlice';
+import { selectBalance } from '../../../../entities/wallet/slices/walletSlice'
+import { selectRouletteSpinCurrentNumber } from '../../slices/rouletteSpinSlice'
+import ScoreWindow from '../../shared/scoreWindow'
 
 interface IInfoPanelProps {}
 
-type Item ={
-    id: 'balance' | 'winBet' |  'currentBet' | 'activeNumber' ;
-    title: string;
-    icon: string;
+export interface IScoreItem {
+  id: 'balance' | 'winBet' | 'currentBet' | 'activeNumber'
+  title: string
+  icon: string
 }
 
-const ITEMS:Item[] = [
+const ITEMS: IScoreItem[] = [
   {
     id: 'balance',
     title: 'Balance',
@@ -39,7 +40,7 @@ const ITEMS:Item[] = [
 ]
 
 const InfoPanel: FC<IInfoPanelProps> = () => {
-    const balance = useAppSelector(selectBalance)
+  const balance = useAppSelector(selectBalance)
   const activeNumber = useAppSelector(selectActiveNumber)
   const currentBet = useAppSelector(selectCurrentBet)
   const winBet = useAppSelector(selectRouletteSpinCurrentNumber)
@@ -50,10 +51,18 @@ const InfoPanel: FC<IInfoPanelProps> = () => {
         <div key={item.id}>
           <div>{item.title}</div>
           <div>
-            {item.id === 'activeNumber' && activeNumber}
-            {item.id === 'currentBet' && currentBet}
-            {item.id === 'balance' && balance}
-            {item.id === 'winBet' && winBet}
+            {item.id === 'activeNumber' && (
+              <ScoreWindow icon="activeNumber"><div className='pr-6'>{activeNumber}</div></ScoreWindow>
+            )}
+            {item.id === 'currentBet' && (
+              <ScoreWindow icon="currentBet">{currentBet}</ScoreWindow>
+            )}
+            {item.id === 'balance' && (
+              <ScoreWindow icon="balance">{balance}</ScoreWindow>
+            )}
+            {item.id === 'winBet' && (
+              <ScoreWindow icon="winBet"><div className='pr-6'>{winBet}</div></ScoreWindow>
+            )}
           </div>
         </div>
       ))}

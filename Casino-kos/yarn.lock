@@ -555,6 +555,11 @@
     "@types/css-font-loading-module" "^0.0.12"
     ismobilejs "^1.1.0"
 
+"@pixi/sound@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@pixi/sound/-/sound-6.0.1.tgz#ced1f6b729da668445ec4c4f51e8935d9506a702"
+  integrity sha512-hpFlQSScAR2L/CsEoIvDi7s1oGsu8y9Zd742Vd3982N+q3IF2vFuIfV9HN4ryjlGnhCT8yBlEgs1gp4G9Rt9TA==
+
 "@pixi/sprite-animated@^7.4.2":
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/@pixi/sprite-animated/-/sprite-animated-7.4.2.tgz#c28a3b2a8ee986517657ad5a1406fdddd610f56b"
