@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import RouletteSpinPX from '../../pixi/rouletteSpin/RouletteSpinPX'
 import GameSceneUI from './GameSceneUI'
 import { Stage } from '../../../../app/config/contextBridge'
@@ -10,6 +10,7 @@ import soundNumber from '../../../../assets/sounds/roulette/number.mp3'
 import soundRouletteSpin from '../../../../assets/sounds/roulette/spin.mp3'
 import { sound } from '@pixi/sound'
 import { SOUNDS_ROULETTE } from './config'
+import * as PIXI from 'pixi.js'
 
 interface IRouletteGameSceneProps {}
 
@@ -21,6 +22,14 @@ const RouletteGameScene: FC<IRouletteGameSceneProps> = () => {
   sound.add(SOUNDS_ROULETTE.NUMBER, soundNumber)
   sound.add(SOUNDS_ROULETTE.SPIN, soundRouletteSpin)
 
+  useEffect(() => {
+    ;(async () => {
+      await PIXI.Assets.load(SOUNDS_ROULETTE.BG)
+      sound.volume(SOUNDS_ROULETTE.BG, 0.15)
+      sound.play(SOUNDS_ROULETTE.BG)
+    })()
+  }, [])
+
   return (
     <div className="flex flex-col items-center">
       <div>Title Game</div>
@@ -30,6 +39,7 @@ const RouletteGameScene: FC<IRouletteGameSceneProps> = () => {
             width={width}
             height={height}
             options={{ background: 'green' }}
+            className="rounded-3xl shadow-xl"
           >
             <BgPX />
             <RouletteSpinPX />
