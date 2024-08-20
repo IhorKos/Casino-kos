@@ -2,23 +2,10 @@ import { FC, useMemo } from 'react'
 import RowPX from './RowPX'
 import { SLOT_ROW, TSlotRow } from './utils'
 import { Container } from '@pixi/react'
+import { useAppSelector } from '../../../../app/store/hooks'
+import { selectSlotRows } from '../../slices/slotSlice'
 
 interface IRowsPXProps {}
-
-const ROWS = [
-  {
-    id: 1,
-    activeItemID: 4,
-  },
-  {
-    id: 2,
-    activeItemID: 7,
-  },
-  {
-    id: 3,
-    activeItemID: 7,
-  },
-]
 
 const generateRandomRow = (slotRow: TSlotRow[]) => {
   const clone = [...slotRow]
@@ -28,15 +15,19 @@ const generateRandomRow = (slotRow: TSlotRow[]) => {
 }
 
 const RowsPX: FC<IRowsPXProps> = () => {
+const rows = useAppSelector(selectSlotRows)
+
   const firstSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), [])
   const secondSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), [])
   const thirdSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), [])
+
+
 
   const slotRows = [firstSlotRow, secondSlotRow, thirdSlotRow]
 
   return (
     <Container x={395} y={0}>
-      {ROWS.map((row, idx) => (
+      {rows.map((row, idx) => (
         <RowPX
           key={row.id}
           rowID={row.id}
