@@ -1,0 +1,6 @@
+.table {
+    border-radius: 20px;
+    box-shadow: 0 0 11px 23px #561C08;
+    position: relative;
+    overflow: hidden;
+}

@@ -62,7 +62,7 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
             image={row.image}
             x={0}
             y={idx * ITEM_HEIGHT}
-            //   anchor={0.5}
+            anchor={0.5}
             scale={0.5}
           />
         ))}
@@ -75,7 +75,7 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
             image={row.image}
             x={0}
             y={idx * ITEM_HEIGHT}
-            //   anchor={0.5}
+            anchor={0.5}
             scale={0.5}
           />
         ))}
@@ -88,7 +88,7 @@ const RowPX: FC<IRowPXProps> = ({ slotRow, rowID, activeItemID }) => {
             image={row.image}
             x={0}
             y={idx * ITEM_HEIGHT}
-            //   anchor={0.5}
+            anchor={0.5}
             scale={0.5}
           />
         ))}

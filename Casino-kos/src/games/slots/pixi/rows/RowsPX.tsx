@@ -1,7 +1,7 @@
-import { FC, useMemo } from 'react'
+import { FC, useEffect, useMemo, useRef, useState } from 'react'
 import RowPX from './RowPX'
 import { SLOT_ROW, TSlotRow } from './utils'
-import { Container } from '@pixi/react'
+import { Container, Graphics } from '@pixi/react'
 import { useAppSelector } from '../../../../app/store/hooks'
 import { selectSlotRows } from '../../slices/slotSlice'
 
@@ -15,18 +15,31 @@ const generateRandomRow = (slotRow: TSlotRow[]) => {
 }
 
 const RowsPX: FC<IRowsPXProps> = () => {
-const rows = useAppSelector(selectSlotRows)
+  const [loading, setLoading] = useState(false)
+  const rows = useAppSelector(selectSlotRows)
 
   const firstSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), [])
   const secondSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), [])
   const thirdSlotRow = useMemo(() => generateRandomRow(SLOT_ROW), [])
 
-
-
   const slotRows = [firstSlotRow, secondSlotRow, thirdSlotRow]
 
+  const mask = useRef(null)
+
+  useEffect(() => {
+    setLoading(true)
+  }, [])
+
   return (
-    <Container x={395} y={0}>
+    <Container x={450} y={50} mask={mask.current}>
+      <Graphics
+        draw={(g) => {
+          g.beginFill(0x000000)
+          g.drawRect(-100, 50, 400, 300)
+          g.endFill()
+        }}
+        ref={mask}
+      />
       {rows.map((row, idx) => (
         <RowPX
           key={row.id}
