@@ -2,6 +2,7 @@ import React, { FC, ReactNode, useEffect } from 'react'
 import { useAppSelector } from '../../../../app/store/hooks'
 import {
   selectSlotLifecycle,
+  setSlotCurrentBet,
   setSlotLifecycle,
   SlotLifecycle,
 } from '../../slices/slotSlice'
@@ -43,6 +44,7 @@ const SlotLifecycleProvider: FC<ISlotLifecycleProviderProps> = ({
 
   useEffect(() => {
     if (lifecycle === SlotLifecycle.INFO) {
+      dispatch(setSlotCurrentBet(0))
       setTimeout(() => {
         dispatch(setSlotLifecycle(SlotLifecycle.READY_TO_START))
       }, 3000)

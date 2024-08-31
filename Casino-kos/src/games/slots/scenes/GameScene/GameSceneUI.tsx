@@ -13,10 +13,10 @@ const SlotGameSceneUI: FC<ISlotGameSceneProps> = ({ children }) => {
       <div className="absolute left-[50%] bottom-[3%] translate-x-[-50%]">
         <SlotBetsPanel/>
       </div>
-      <div className="absolute left-[15%] top-[30%]">
+      <div className="absolute left-[3%] top-[30%]">
         <SlotInfoPanel/>
       </div>
-      <div className="absolute right-[15%] top-[50%]">
+      <div className="absolute right-[9%] bottom-[15%]">
         <SlotEventPanel/>
       </div>
       {children}

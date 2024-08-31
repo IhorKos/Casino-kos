@@ -6,6 +6,7 @@ import {
   SlotLifecycle,
 } from '../../slices/slotSlice'
 import { selectBalance } from '../../../../entities/wallet/slices/walletSlice'
+import SlotScoreWindow from '../../shared/scoreWindow/ScoreWindow'
 
 interface ISlotInfoPanelProps {}
 
@@ -22,15 +23,17 @@ const SlotInfoPanel: FC<ISlotInfoPanelProps> = () => {
   }, [lifecycle, balance])
 
   return (
-    <div>
-      <div>
-        <div>Balance</div>
-        <div>{displayBalance}</div>
-      </div>
-      <div>
-        <div>Bet</div>
-        <div>{currentBet}</div>
-      </div>
+    <div className="flex flex-col gap-8">
+      <SlotScoreWindow
+        icon="balance"
+      >
+        {displayBalance ?? 0}
+      </SlotScoreWindow>
+      <SlotScoreWindow
+        icon="bets"
+      >
+        {currentBet ?? 0}
+      </SlotScoreWindow>
     </div>
   )
 }

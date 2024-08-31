@@ -68,7 +68,7 @@ const slotSlice = createSlice({
             console.log(arrayActiveItemsID, state.winOrLose , arrayActiveItemsID.every(elem => elem === firstItem));
         },
         setSlotCurrentBet: (state, action: PayloadAction<number>) => {
-            state.currentBet + action.payload < 0
+            (state.currentBet + action.payload < 0) || (action.payload === 0)
               ? (state.currentBet = 0)
               : (state.currentBet = state.currentBet + action.payload)
           },
